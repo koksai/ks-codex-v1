@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+  <h2>รายงานย้อนหลัง</h2>
+  <form method="get" action="/reports">
+    <select name="case_status">
+      <option value="">ทุกสถานะ</option>
+      <option value="open" {% if case_status == 'open' %}selected{% endif %}>open</option>
+      <option value="closed" {% if case_status == 'closed' %}selected{% endif %}>closed</option>
+    </select>
+    <button class="btn" type="submit">กรอง</button>
+  </form>
+</div>
+<div class="card"><h3>เคส</h3>
+  <table class="table">
+    <tr><th>รหัส</th><th>หัวข้อ</th><th>สถานะ</th><th>เวลา</th></tr>
+    {% for row in case_rows %}<tr><td>{{ row.case_code }}</td><td>{{ row.title }}</td><td>{{ row.status }}</td><td>{{ row.created_at }}</td></tr>{% endfor %}
+  </table>
+</div>
+<div class="card"><h3>ประวัติแจ้งเหตุ</h3>
+  <table class="table">
+    <tr><th>เหตุ</th><th>ความรุนแรง</th><th>พิกัด</th><th>เวลา</th></tr>
+    {% for row in incident_rows %}<tr><td>{{ row.title }}</td><td>{{ row.severity }}</td><td>{{ row.latitude }},{{ row.longitude }}</td><td>{{ row.created_at }}</td></tr>{% endfor %}
+  </table>
+</div>
+{% endblock %}
