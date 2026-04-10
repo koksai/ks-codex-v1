@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card"><h2>สวัสดี {{ user.full_name }} <span class="badge">{{ user.role }}</span></h2></div>
+<div class="stats">
+  <div class="stat"><div>เคสทั้งหมด</div><strong>{{ total_cases }}</strong></div>
+  <div class="stat"><div>เคสเปิด</div><strong>{{ open_cases }}</strong></div>
+  <div class="stat"><div>เหตุวันนี้</div><strong>{{ incidents_today }}</strong></div>
+</div>
+<div class="card">
+  <a class="btn" href="/cases">บันทึกข้อมูลเคส</a>
+  {% if user.role == 'admin' %}<a class="btn btn-dark" href="/incidents">หน้าแจ้งเหตุ (แอดมิน)</a>{% endif %}
+  <a class="btn" href="/reports">รายงานย้อนหลัง</a>
+</div>
+<div class="card">
+  <h3>แจ้งเตือนล่าสุด</h3>
+  {% for n in notifications %}
+    <p>• {{ n.message }}</p>
+  {% else %}
+    <p>ยังไม่มีแจ้งเตือน</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+  <h2>บันทึกข้อมูลเคส</h2>
+  <form method="post" action="/cases">
+    <label>รหัสเคส</label><input name="case_code" required />
+    <label>หัวข้อ</label><input name="title" required />
+    <label>รายละเอียด</label><textarea name="description" required></textarea>
+    <label>ผู้แจ้ง</label><input name="reporter_name" required />
+    <label>สถานะ</label>
+    <select name="status_value"><option value="open">open</option><option value="closed">closed</option></select>
+    <button class="btn" type="submit">บันทึก</button>
+  </form>
+</div>
+<div class="card">
+  <table class="table">
+    <tr><th>รหัส</th><th>หัวข้อ</th><th>สถานะ</th></tr>
+    {% for row in records %}<tr><td>{{ row.case_code }}</td><td>{{ row.title }}</td><td>{{ row.status }}</td></tr>{% endfor %}
+  </table>
+</div>
+{% endblock %}

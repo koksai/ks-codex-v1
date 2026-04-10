@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+  <h2>สมัครสมาชิก</h2>
+  <form method="post" action="/register">
+    <label>ชื่อ-นามสกุล</label><input name="full_name" required />
+    <label>ชื่อผู้ใช้</label><input name="username" required />
+    <label>รหัสผ่าน</label><input type="password" name="password" required />
+    <label>บทบาท</label>
+    <select name="role">
+      <option value="officer">เจ้าหน้าที่</option>
+      <option value="admin">แอดมิน</option>
+    </select>
+    <button class="btn" type="submit">สมัครใช้งาน</button>
+  </form>
+</div>
+{% endblock %}

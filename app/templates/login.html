@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+  <h2>ล็อกอิน</h2>
+  <form method="post" action="/login">
+    <label>ชื่อผู้ใช้</label><input name="username" required />
+    <label>รหัสผ่าน</label><input type="password" name="password" required />
+    <button class="btn" type="submit">เข้าสู่ระบบ</button>
+  </form>
+</div>
+{% endblock %}
